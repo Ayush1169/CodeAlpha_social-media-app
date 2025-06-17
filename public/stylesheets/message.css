@@ -1,0 +1,59 @@
+body {
+  background-color: #111;
+  color: #f1f1f1;
+  font-family: 'Segoe UI', sans-serif;
+}
+
+h1 {
+  color: hotpink;
+  margin-bottom: 20px;
+  text-align: center;
+}
+
+.user-list {
+  max-width: 600px;
+  margin: 40px auto;
+  padding: 0 20px;
+}
+
+.user-card {
+  background-color: #1e1e2f;
+  border-radius: 10px;
+  padding: 12px;
+  margin-bottom: 15px;
+  display: flex;
+  align-items: center;
+  transition: background-color 0.3s ease;
+}
+
+.user-card:hover {
+  background-color: #2e2e4f;
+}
+
+.user-card img {
+  height: 45px;
+  width: 45px;
+  border-radius: 50%;
+  margin-right: 15px;
+  object-fit: cover;
+  border: 2px solid #444;
+}
+
+.username a {
+  color: #80dfff;
+  font-weight: bold;
+  text-decoration: none;
+  font-size: 1.1em;
+}
+
+.username a:hover {
+  text-decoration: underline;
+}
+
+.back-link {
+  color: #a1a1ff;
+  margin-top: 30px;
+  display: block;
+  text-align: center;
+  font-size: 1em;
+}

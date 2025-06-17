@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Chat with <%= receiver.username %></title>
+  <link rel="stylesheet" href="/stylesheets/chat.css" />
+</head>
+<body>
+  <div class="chat-container">
+    <h2>Chat with <%= receiver.username %></h2>
+
+    <div class="messages">
+      <% messages.forEach(msg => { %>
+        <div class="<%= msg.sender._id.toString() === currentUser._id.toString() ? 'sent' : 'received' %>">
+          <p><%= msg.message %></p>
+        </div>
+      <% }) %>
+    </div>
+
+    <form action="/chat/<%= receiver._id %>" method="POST">
+      <input type="text" name="message" required />
+      <button type="submit">Send</button>
+    </form>
+  </div>
+</body>
+</html>

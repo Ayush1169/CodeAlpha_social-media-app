@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Messages</title>
+  <link rel="stylesheet" href="../stylesheets/message.css">
+</head>
+<body>
+  <div class="user-list">
+    <h1>Messages</h1>
+
+    <% if (chatUsers.length === 0) { %>
+      <p>No users available to chat.</p>
+    <% } else { %>
+      <% chatUsers.forEach(user => { %>
+        <div class="user-card">
+          <img src="/uploads/<%= user.profileImage || 'default.png' %>" alt="Profile">
+          <div class="username">
+            <a href="/chat/<%= user._id %>"><%= user.username %></a>
+          </div>
+        </div>
+      <% }) %>
+    <% } %>
+
+    <a class="back-link" href="/">Back to Home</a>
+  </div>
+</body>
+</html>

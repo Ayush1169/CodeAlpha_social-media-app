@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Notifications</title>
+  <link rel="stylesheet" href="/stylesheets/notification.css" />
+</head>
+<body>
+  <div class="notification-container">
+    <h2>Notifications</h2>
+    <ul>
+      <% if (notifications.length === 0) { %>
+        <li class="no-notification">No notifications yet.</li>
+      <% } else { %>
+        <% notifications.forEach(notif => { %>
+          <li class="notification-item">
+            <% if (notif.type === 'follow') { %>
+              <strong><%= notif.sender.username %></strong> followed you.
+              
+              <% if (!currentUser.following.some(f => f.toString() === notif.sender._id.toString())) { %>
+                <form action="/follow/<%= notif.sender._id %>" method="POST" style="display:inline;">
+                  <button type="submit">Follow Back</button>
+                </form>
+              <% } else { %>
+                <span>✓ Following</span>
+              <% } %>
+
+            <% } else if (notif.type === 'like' && notif.post) { %>
+              <strong><%= notif.sender.username %></strong> liked your 
+              <a href="/post/<%= notif.post._id %>">View post</a>.
+
+            <% } else if (notif.type === 'comment' && notif.post) { %>
+              <strong><%= notif.sender.username %></strong> commented on your 
+              <a href="/post/<%= notif.post._id %>">View post</a>.
+
+            <% } %>
+          </li>
+        <% }) %>
+      <% } %>
+    </ul>
+  </div>
+</body>
+</html>

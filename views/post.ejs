@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>View Post</title>
+  <link rel="stylesheet" href="../stylesheets/post.css">
+</head>
+<body>
+  <h2><%= post.user.username %>'s Post</h2>
+  <p><%= post.caption %></p>
+  <% if (post.image) { %>
+    <img src="/uploads/<%= post.image %>" alt="Post Image" width="300" />
+  <% } %>
+  <p>Posted on: <%= post.createdAt.toLocaleString() %></p>
+
+  <h4>Comments:</h4>
+  <ul>
+    <% post.comments.forEach(comment => { %>
+      <li><strong><%= comment.user.username %></strong>: <%= comment.content %></li>
+    <% }) %>
+  </ul>
+</body>
+</html>
