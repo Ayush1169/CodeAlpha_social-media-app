@@ -1,3 +1,4 @@
+require('dotenv').config();
 var createError = require('http-errors');
 var express = require('express');
 var path = require('path');
@@ -6,9 +7,9 @@ var logger = require('morgan');
 const flash = require('connect-flash');
 const expressSession = require('express-session');
 const passport = require('passport');
-const session = require('express-session');
 const User = require('./routes/users'); 
 const profileRoutes = require('./routes/index')
+const mongoose = require('mongoose');
 
 
 var indexRouter = require('./routes/index');
@@ -25,7 +26,7 @@ app.use(flash())
 app.use(expressSession({
   resave: false,
   saveUninitialized: false,
-  secret: "hey hey hey"
+  secret: process.env.SECRET_KEY
 }))
 
 app.use(passport.initialize());
@@ -61,5 +62,13 @@ app.use(function(err, req, res, next) {
   res.status(err.status || 500);
   res.render('error');
 });
+
+mongoose.connect(process.env.MONGODB_URI, {
+  useNewUrlParser: true,
+  useUnifiedTopology: true
+})
+.then(() => console.log("MongoDB connected"))
+.catch((err) => console.error("MongoDB connection error:", err));
+
 
 module.exports = app;
