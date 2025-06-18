@@ -5,7 +5,7 @@ const path = require("path");
 // Multer Storage Config
 const storage = multer.diskStorage({
   destination: (req, file, cb) => {
-    cb(null, './uploads'); // make sure this folder exists!
+    cb(null, './public/uploads'); // make sure this folder exists!
   },
   filename: (req, file, cb) => {
     const ext = path.extname(file.originalname).toLowerCase();
